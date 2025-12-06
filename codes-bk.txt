@@ -1,0 +1,459 @@
+
+開啟：npm run dev
+
+
+#========= Tut: 1~ 12 =============================
+
+App.jsx:
+
+function App() {
+  const person = {
+    name: "Miko",
+    message: "Is Fedo there?",
+    emoji: "🤩",
+    seatNumbers: [1, 4, 7, 11],
+  };
+  const person2 = {
+    name: "Fedo",
+    message: "Is Miko there?",
+    emoji: "🤓",
+    seatNumbers: [13, 17, 19, 23],
+  };
+  return (
+    <div className="App">
+      // from "props" as an object
+      <Hello message="Hello " emoji="❤️ " name="Tata" seatNumbers={[2, 4, 6]} />
+      // from "message, emoji, name, seatNumbers" in a pair of curly bracket
+      <Hello2
+        message="Hello2 "
+        emoji="😭 "
+        name="Miko"
+        seatNumbers={[7, 8, 9]}
+      />
+      // "props.person.message..." is used
+      <Hello3 person={person} />
+      // "person.message" in 大括號 as an obj is defined in this page
+      <Hello4 person={person2} />
+      <h3>{name}</h3>
+    </div>
+  );
+}
+
+
+#=========== Tut 13 ===============
+
+Fruits.jsx:
+
+export default function Fruits() {
+  const fruits = ["Apple", "Mango", "Banana", "Kiwi", "Pineapple"];
+
+  return (
+    <div>
+      {fruits.map((fruit) => (
+        <ul>
+          <li key={fruit}>{fruit}</li>
+        </ul>
+      ))}
+    </div>
+    
+  );
+}
+
+#=========== Tut 14 ===============
+
+Fruits.jsx:
+
+export default function Fruits() {
+  //const fruits = ["Apple", "Mango", "Banana", "Kiwi", "Pineapple"];
+  const fruits = [
+    { name: "Apple", price: 10, emoji: "🍎" },
+    { name: "Mango", price: 7, emoji: "🥭" },
+    { name: "Banana", price: 2, emoji: "🌙" },
+    { name: "Kiwi", price: 5, emoji: "🥝" },
+    { name: "Pineapple", price: 12, emoji: "🍍" },
+  ];
+  return (
+    <div>
+      <ul>
+        {fruits.map((fruit) => (
+          <li key={fruit.name}>
+            {" "}
+            {fruit.emoji} {fruit.name} {fruit.price}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+
+#=========== Tut 15 ===============
+
+Fruits.jsx:
+
+import Fruit from "./Fruit";
+
+export default function Fruits() {
+  //const fruits = ["Apple", "Mango", "Banana", "Kiwi", "Pineapple"];
+  const fruits = [
+    { name: "Apple", price: 10, emoji: "🍎" },
+    { name: "Mango", price: 7, emoji: "🥭" },
+    { name: "Banana", price: 2, emoji: "🌙" },
+    { name: "Kiwi", price: 5, emoji: "🥝" },
+    { name: "Pineapple", price: 12, emoji: "🍍" },
+  ];
+  return (
+    <div>
+      <ul>
+        {fruits.map((fruit) => (
+          <Fruit
+            key={fruit.name}
+            name={fruit.name}
+            price={fruit.price}
+            emoji={fruit.emoji}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+Fruit.jsx:
+
+import Fruit from "./Fruit";
+export default function Fruits() {
+  //const fruits = ["Apple", "Mango", "Banana", "Kiwi", "Pineapple"];
+  const fruits = [
+    { name: "Apple", price: 10, emoji: "🍎" },
+    { name: "Mango", price: 7, emoji: "🥭" },
+    { name: "Banana", price: 2, emoji: "🌙" },
+    { name: "Kiwi", price: 5, emoji: "🥝" },
+    { name: "Pineapple", price: 12, emoji: "🍍" },
+  ];
+  return (
+    <div>
+      <ul>
+        {fruits.map((fruit) => (
+          <Fruit
+            key={fruit.name}
+            name={fruit.name}
+            price={fruit.price}
+            emoji={fruit.emoji}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+
+#=========== Tut 16:Ｃonditional  ===============
+
+export default function ConditionalComponent() {
+  const display = false;
+  const display2 = true;
+
+  if (display2) {
+    return <Welcome />;
+  } else {
+    return <Code />;
+  }
+}
+
+
+
+
+#=========== Tut 17:Ｃonditional ===============
+
+export default function ConditionalComponent() {
+  // Don't use two returns
+  let message;
+  const display = true;
+
+  if (display) {
+    message = <h1>This is message 1</h1>;
+  } else {
+    message = <h1>This is message 2</h1>;
+  }
+
+  return message;
+}
+
+
+
+#=========== Tut18 :Ｃonditional ===============
+
+export default function ConditionalComponent() {
+  // Don't use two returns
+
+  const display = true;
+
+  return display ? <Welcome /> : <Code />;
+}
+
+
+
+#=========== Tut 19:Ｃonditional ===============
+
+export default function Fruit({ name, price, emoji }) {
+  return (
+    <>
+      {/*{emoji} {name} {price}*/}
+      {price > 5 ? (
+        <li>
+          {emoji} {name} {price}
+        </li>
+      ) : (
+        ""
+      )}
+    </>
+  );
+}
+
+
+
+
+#=========== Tut 20 ===============
+
+Fruit.jsx:
+export default function Fruit({ name, price, emoji, soldout }) {
+  return (
+    <>
+      <li>
+        {emoji} {name} {price} {soldout ? "Sold Out" : ""}
+      </li>
+    </>
+  );
+}
+
+
+Fruits.jsx:
+import Fruit from "./Fruit";
+export default function Fruits() {
+  //const fruits = ["Apple", "Mango", "Banana", "Kiwi", "Pineapple"];
+  const fruits = [
+    { name: "Apple", price: 10, emoji: "🍎", soldout: true },
+    { name: "Mango", price: 7, emoji: "🥭", soldout: false },
+    { name: "Banana", price: 2, emoji: "🌙", soldout: true },
+    { name: "Kiwi", price: 5, emoji: "🥝", soldout: false },
+    { name: "Pineapple", price: 12, emoji: "🍍", soldout: true },
+  ];
+  return (
+    <div>
+      <ul>
+        {fruits.map((fruit) => (
+          <Fruit
+            key={fruit.name}
+            name={fruit.name}
+            price={fruit.price}
+            emoji={fruit.emoji}
+            soldout={fruit.soldout}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+
+
+
+
+#=========== Tut 21: Events - Message.jsx ===============
+
+export default function Message() {
+  function handleClick() {
+    console.log("Button Clicked");
+  }
+  return (
+    <div>
+      <button onClick={handleClick}>Click here to get a message</button>
+    </div>
+  );
+}
+
+
+
+
+#=========== Tut 23: State - Counter.jsx ===============
+// Use a HOOK to create a STATE variable
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0); // Hook
+  function increment() {
+    setCount(count + 1);
+  }
+  function decrement() {
+    setCount(count - 1);
+  }
+  return (
+    <div>
+      <h1>Count value is: {count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+}
+
+
+
+
+#=========== Tut 24: Multi-State - Counter.jsx ===============
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0); // Hook
+  const [incrementBy, setIncrementBy] = useState(5);
+  //   const [decrementBy, setDecrementBy] = useState(3);
+
+  function increment() {
+    setCount(count + incrementBy);
+  }
+  function decrement() {
+    setCount(count - incrementBy);
+  }
+  function increaseIncrement() {
+    setIncrementBy(incrementBy + 1);
+  }
+  function decreaseIncrement() {
+    setIncrementBy(incrementBy - 1);
+  }
+
+  return (
+    <div>
+      <h1>Count value is: {count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <h1>We are incrementing the value by: {incrementBy}</h1>
+      <button onClick={increaseIncrement}>Increase Increment</button>
+      <button onClick={decreaseIncrement}>Decrease Increment</button>
+    </div>
+  );
+}
+
+
+
+
+
+#=========== Tut 25: INPUT FIELD - Form.jsx ===============
+
+import { useState } from "react";
+
+export default function Form() {
+  const [name, setName] = useState("");
+  const placeholder = "Write your name...";
+  function handleChange(e) {
+    // console.log(e.target.value);
+    setName(e.target.value);
+  }
+
+  return (
+    <div>
+      <form>
+        <input
+          // 方法 1
+          //   onChange={function demo(e) {
+          //     return handleChange(e);
+          //   }}
+
+          // 方法 2
+          // onChange={(e) => handleChange(e)}
+
+          // 方法 3
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder={placeholder}
+          value={name}
+        />
+      </form>
+    </div>
+  );
+}
+
+
+
+
+
+#=========== Tut 26: MULTIPLE INPUT FIELDS - Form2.jsx ===============
+
+import { useState } from "react";
+
+export default function Form2() {
+  const placeholderFirstname = "Your First name...";
+  const placeholderLastname = "Your Last name...";
+
+  return (
+    <div>
+      {name.firstname} {name.lastname}
+      <form>
+        <input
+          onChange={(e) => setName({ ...name, firstname: e.target.value })}
+          type="text"
+          placeholder={placeholderFirstname}
+          value={name.firstname}
+        />
+        <input
+          onChange={(e) => setName({ ...name, lastname: e.target.value })}
+          type="text"
+          placeholder={placeholderLastname}
+          value={name.lastname}
+        />
+      </form>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+#=========== Tut 27: SUBMIT FIELD - Form3.jsx ===============
+
+import { useState } from "react";
+
+export default function Form3() {
+  const [name, setName] = useState({ firstname: "", lastname: "" });
+  const placeholderFirstname = "Your First name...";
+  const placeholderLastname = "Your Last name...";
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(name);
+  }
+
+  return (
+    <div>
+      {name.firstname} {name.lastname}
+      <form>
+        <input
+          onChange={(e) => setName({ ...name, firstname: e.target.value })}
+          type="text"
+          placeholder={placeholderFirstname}
+          value={name.firstname}
+        />
+        <input
+          onChange={(e) => setName({ ...name, lastname: e.target.value })}
+          type="text"
+          placeholder={placeholderLastname}
+          value={name.lastname}
+        />
+        <button onClick={(e) => handleSubmit(e)}>Add</button>
+      </form>
+    </div>
+  );
+}
+
+
+
+
+
+
+
